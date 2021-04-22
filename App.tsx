@@ -1,20 +1,22 @@
+// In App.js in a new project
 import 'react-native-gesture-handler';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
-import {StatusBar, useColorScheme} from 'react-native';
+import {createStackNavigator} from '@react-navigation/stack';
 
-// Custom Components
-import {SafeAreaView} from './src/atoms';
+const Stack = createStackNavigator();
 
-const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+// Screens
+import HomeScreen from './src/screens/Home';
+
+function App() {
   return (
     <NavigationContainer>
-      <SafeAreaView>
-        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      </SafeAreaView>
+      <Stack.Navigator>
+        <Stack.Screen name="Todo App" component={HomeScreen} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
-};
+}
 
 export default App;
