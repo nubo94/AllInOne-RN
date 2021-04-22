@@ -1,18 +1,18 @@
 /**
- * Describe component SafeAreaView
+ * Describe component View
  * @format
  */
 
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {SafeAreaView, Text} from '../../src/atoms';
+import {Text, View} from '../../src/atoms';
 
-test('renders correctly - SafeAreaView', () => {
+test('renders correctly - View', () => {
   const tree = renderer
     .create(
-      <SafeAreaView>
+      <View>
         <Text label="Hello Word!" />
-      </SafeAreaView>,
+      </View>,
     )
     .toJSON();
   expect(tree).toMatchSnapshot();
