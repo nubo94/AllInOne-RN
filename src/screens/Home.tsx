@@ -1,13 +1,14 @@
 import React from 'react';
-import {View, Text} from 'react-native';
 
 // Custom Components
+import {SafeAreaView, StatusBar, Text} from '../atoms';
 
 function HomeScreen() {
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Home Screen</Text>
-    </View>
+    <SafeAreaView>
+      <StatusBar />
+      <Text label="Home Screen" />
+    </SafeAreaView>
   );
 }
 
