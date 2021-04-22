@@ -1,5 +1,5 @@
 export default {
-  light: {
+  lighter: {
     primary: {
       dark: '#5A6AE5',
       main: '#6C75F5',
@@ -34,7 +34,7 @@ export default {
       warning: '#E65100',
     },
   },
-  dark: {
+  darker: {
     primary: {
       dark: '#212121',
       main: '#424242',

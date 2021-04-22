@@ -4,11 +4,11 @@
  */
 
 import 'react-native';
-import Colors from '../../../src/atoms/styles/colors';
+import {Colors} from '../../../src/atoms/styles';
 
-test('should be a object', () => {
+test('should be a object - colors', () => {
   const expected = {
-    light: {
+    lighter: {
       primary: {
         dark: '#5A6AE5',
         main: '#6C75F5',
@@ -43,7 +43,7 @@ test('should be a object', () => {
         warning: '#E65100',
       },
     },
-    dark: {
+    darker: {
       primary: {
         dark: '#212121',
         main: '#424242',
@@ -79,6 +79,6 @@ test('should be a object', () => {
       },
     },
   };
-
   expect(Colors).toEqual(expected);
+  expect(Colors).toMatchSnapshot();
 });
