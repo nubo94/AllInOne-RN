@@ -1,3 +1,8 @@
+/**
+ * Describe component View
+ * @format
+ */
+
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {Text, View} from '../../src/atoms';

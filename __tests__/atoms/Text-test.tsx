@@ -1,3 +1,8 @@
+/**
+ * Describe component Text
+ * @format
+ */
+
 import React from 'react';
 import renderer from 'react-test-renderer';
 import {Text} from '../../src/atoms';
