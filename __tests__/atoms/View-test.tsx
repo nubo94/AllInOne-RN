@@ -8,10 +8,11 @@ import renderer from 'react-test-renderer';
 import {Text, View} from '../../src/atoms';
 
 test('renders correctly - View', () => {
+  const expected = 'Hello Word!';
   const tree = renderer
     .create(
       <View>
-        <Text label="Hello Word!" />
+        <Text label={expected} />
       </View>,
     )
     .toJSON();

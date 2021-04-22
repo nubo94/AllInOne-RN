@@ -9,6 +9,7 @@ import {Input} from '../../src/atoms';
 
 afterEach(cleanup);
 it('renders input component', async () => {
-  const {getByPlaceholderText} = render(<Input placeholder="Hello word!" />);
-  await waitFor(() => getByPlaceholderText('Hello word!'));
+  const expected = 'Hello word!';
+  const {getByPlaceholderText} = render(<Input placeholder={expected} />);
+  await waitFor(() => getByPlaceholderText(expected));
 });

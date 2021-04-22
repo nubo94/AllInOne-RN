@@ -1,14 +1,14 @@
 import React from 'react';
 
 // Custom Components
-import {SafeAreaView, StatusBar, Text} from '../atoms';
+import {Screen} from '../molecules';
+import ToDo from '../templates/ToDo';
 
 function HomeScreen() {
   return (
-    <SafeAreaView>
-      <StatusBar />
-      <Text label="Home Screen" />
-    </SafeAreaView>
+    <Screen>
+      <ToDo />
+    </Screen>
   );
 }
 

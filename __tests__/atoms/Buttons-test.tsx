@@ -5,7 +5,8 @@ import {Button} from '../../src/atoms';
 
 const onPressMock = jest.fn();
 test('button component test', () => {
-  const {getByText} = render(<Button onPress={onPressMock} title="Press me" />);
-  fireEvent.press(getByText('Press me'));
+  const expected = 'Press me';
+  const {getByText} = render(<Button onPress={onPressMock} title={expected} />);
+  fireEvent.press(getByText(expected));
   expect(onPressMock).toHaveBeenCalled();
 });
