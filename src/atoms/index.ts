@@ -1,2 +1,3 @@
 import SafeAreaView from './SafeAreaView';
-export {SafeAreaView};
+import Text from './Text';
+export {Text, SafeAreaView};
