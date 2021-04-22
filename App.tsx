@@ -1,21 +1,16 @@
 // In App.js in a new project
 import 'react-native-gesture-handler';
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
+import RootScreen from './src/screens';
 
-const Stack = createStackNavigator();
-
-// Screens
-import HomeScreen from './src/screens/Home';
+// Provider
+import {LanguageProvider} from './src/providers';
 
 function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Todo App" component={HomeScreen} />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <LanguageProvider>
+      <RootScreen />
+    </LanguageProvider>
   );
 }
 
