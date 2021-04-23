@@ -1,7 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly - Text 1`] = `
-<Text>
+<Text
+  style={
+    Array [
+      Object {
+        "color": "#161617",
+      },
+      undefined,
+    ]
+  }
+>
   Hello Word!
 </Text>
 `;

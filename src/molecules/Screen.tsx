@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
+import {Sizing} from '../atoms/styles';
 
 // Custom Components
 import {SafeAreaView, StatusBar, View} from '../atoms';
@@ -19,7 +20,8 @@ function Screen({children}: IScreenProps) {
 
 const styles = StyleSheet.create({
   root: {
-    padding: 20,
+    height: '100%',
+    padding: Sizing.layout.x20,
   },
 });
 

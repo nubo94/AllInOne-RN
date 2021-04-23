@@ -2,7 +2,16 @@
 
 exports[`renders correctly - View 1`] = `
 <View>
-  <Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#161617",
+        },
+        undefined,
+      ]
+    }
+  >
     Hello Word!
   </Text>
 </View>
