@@ -1,4 +1,6 @@
-import Colors from './colors';
-import Fonts from './fonts';
+import * as Colors from './colors';
+import * as Sizing from './sizing';
+import * as Outlines from './outlines';
+import * as Typography from './typography';
 
-export {Colors, Fonts};
+export {Colors, Sizing, Typography, Outlines};

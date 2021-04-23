@@ -5,7 +5,7 @@ exports[`renders correctly - SafeAreaView 1`] = `
   emulateUnlessSupported={true}
   style={
     Object {
-      "backgroundColor": "#FAFAFA",
+      "backgroundColor": "#efeff6",
     }
   }
 >
