@@ -18,7 +18,7 @@ export const borderWidth: Record<BorderWidth, number> = {
   thick: 3,
 };
 
-type Shadow = 'base';
+type Shadow = 'base' | 'disable';
 export const shadow: Record<Shadow, ViewStyle> = {
   base: {
     shadowColor: Colors.neutral.s400,
@@ -26,8 +26,17 @@ export const shadow: Record<Shadow, ViewStyle> = {
       width: 0,
       height: 3,
     },
-    shadowOpacity: 0.27,
-    shadowRadius: 4.65,
+    shadowOpacity: 0.2,
+    shadowRadius: 20.65,
     elevation: 6,
+  },
+  disable: {
+    shadowOffset: {
+      width: 0,
+      height: 0,
+    },
+    shadowOpacity: 0,
+    shadowRadius: 0,
+    elevation: 0,
   },
 };

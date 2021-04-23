@@ -3,7 +3,7 @@ export default {
     {
       appNAme: 'Todo App',
       description:
-        'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+        'Create a task, this task will has persisted in your localstorage 🙂',
       inputs: {
         create: 'Create your task',
         action: 'create',
