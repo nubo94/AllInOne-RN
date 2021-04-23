@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
-import {InputWithButton} from '../molecules';
 import {Text, View} from '../atoms';
+import {InputWithButton} from '../molecules';
 import {Sizing, Typography} from '../atoms/styles';
 
 export interface ICreateTaskProps {
@@ -16,9 +16,9 @@ const CreateTask = ({
   placeholder,
 }: ICreateTaskProps) => {
   return (
-    <View style={styles.main}>
-      <View style={styles.wrapperText}>
-        <Text label={description} style={styles.text} />
+    <View style={classes.main}>
+      <View style={classes.wrapperText}>
+        <Text label={description} style={classes.text} />
       </View>
       <InputWithButton
         input={{placeholder}}
@@ -32,7 +32,7 @@ const CreateTask = ({
   );
 };
 
-const styles = StyleSheet.create({
+const classes = StyleSheet.create({
   main: {
     flexGrow: 1,
   },

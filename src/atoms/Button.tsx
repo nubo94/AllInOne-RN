@@ -1,6 +1,7 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {
+  useColorScheme,
   TouchableOpacity,
   ActivityIndicator,
   TouchableOpacityProps,
@@ -17,22 +18,40 @@ export interface IButtonProps extends TouchableOpacityProps {
 }
 
 const Button = ({disabled, style, title, ...props}: IButtonProps) => {
+  const isDarkMode = useColorScheme() === 'dark';
+
+  function _classes() {
+    return [
+      disabled
+        ? isDarkMode
+          ? disableDClasses.main
+          : disableLClasses.main
+        : isDarkMode
+        ? dClasses.main
+        : lClasses.main,
+      style,
+    ];
+  }
+
   return (
     <TouchableOpacity
+      style={_classes()}
       activeOpacity={0.8}
       disabled={disabled}
-      style={[style, disabled ? disabledStyle.main : classes.main]}
       {...props}>
       {disabled ? (
-        <ActivityIndicator size="small" color={Colors.neutral.black} />
+        <ActivityIndicator
+          size="small"
+          color={isDarkMode ? Colors.neutral.s400 : Colors.neutral.black}
+        />
       ) : (
-        <Text label={title} style={classes.text} />
+        <Text label={title} style={lClasses.text} />
       )}
     </TouchableOpacity>
   );
 };
 
-const classes = StyleSheet.create({
+const lClasses = StyleSheet.create({
   main: {
     width: '100%',
     display: 'flex',
@@ -56,11 +75,28 @@ const classes = StyleSheet.create({
   },
 });
 
-const disabledStyle = StyleSheet.create({
+const dClasses = StyleSheet.create({
   main: {
-    ...classes.main,
+    ...lClasses.main,
+    borderColor: Colors.neutral.s500,
+    shadowColor: Colors.neutral.black,
+    backgroundColor: Colors.neutral.s900,
+  },
+});
+
+const disableLClasses = StyleSheet.create({
+  main: {
+    ...lClasses.main,
     backgroundColor: Colors.neutral.s250,
     ...Outlines.shadow.disable,
+  },
+});
+
+const disableDClasses = StyleSheet.create({
+  main: {
+    ...disableLClasses.main,
+    borderColor: Colors.neutral.s700,
+    backgroundColor: Colors.neutral.s700,
   },
 });
 

@@ -9,7 +9,16 @@ exports[`renders correctly - SafeAreaView 1`] = `
     }
   }
 >
-  <Text>
+  <Text
+    style={
+      Array [
+        Object {
+          "color": "#161617",
+        },
+        undefined,
+      ]
+    }
+  >
     Hello Word!
   </Text>
 </RCTSafeAreaView>

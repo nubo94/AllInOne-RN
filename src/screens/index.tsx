@@ -33,7 +33,7 @@ function RootScreen() {
               shadowOpacity: 0, // ios
               borderBottomWidth: 0, // remove the bottom divider
               backgroundColor: isDarkMode
-                ? Colors.neutral.s700
+                ? Colors.neutral.s800
                 : Colors.neutral.s100,
             },
           }}
