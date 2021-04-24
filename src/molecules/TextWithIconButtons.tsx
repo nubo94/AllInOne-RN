@@ -1,17 +1,28 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 
-// Custom Components
-import {View, Text} from '../atoms';
+// Theme
+import {Sizing} from '../atoms/styles';
 
-const TextWithIconButton = () => {
+// Custom Components
+import {View, Text, IconButton, IconButtonProps} from '../atoms';
+
+export interface ITextWithIconButtonProps {
+  label: string;
+  update: IconButtonProps;
+  delete: IconButtonProps;
+}
+
+const TextWithIconButton = ({label, ...props}: ITextWithIconButtonProps) => {
   return (
     <View shadow={true} style={classes.main}>
       <View>
-        <Text label="Hola mundo esto es una simple prueba!" />
+        <Text label={label} />
       </View>
-      <View>
-        <Text label="Hola" />
+      <View style={classes.wrapperButtons}>
+        <IconButton {...props.update} />
+        <View style={classes.separator} />
+        <IconButton {...props.delete} />
       </View>
     </View>
   );
@@ -22,7 +33,15 @@ const classes = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'row',
+    marginBottom: Sizing.x20,
     justifyContent: 'space-between',
+  },
+  wrapperButtons: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  separator: {
+    width: Sizing.x10,
   },
 });
 

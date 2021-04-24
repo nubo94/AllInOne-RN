@@ -16,7 +16,17 @@ function ToDo() {
         titleAction={lang?.inputs?.action}
         placeholder={lang?.inputs?.create}
       />
-      <TextWithIconButtons />
+      <TextWithIconButtons
+        label="hola mundo"
+        update={{
+          iconName: 'edit-2',
+          colorIconType: 'normal',
+        }}
+        delete={{
+          iconName: 'trash',
+          colorIconType: 'danger',
+        }}
+      />
     </>
   );
 }

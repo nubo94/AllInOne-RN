@@ -3,7 +3,7 @@ import {View as VW, ViewProps, StyleSheet, useColorScheme} from 'react-native';
 import {Outlines, Colors, Sizing} from './styles';
 
 interface IViewProps extends ViewProps {
-  children: JSX.Element[] | JSX.Element;
+  children?: JSX.Element[] | JSX.Element;
   shadow?: boolean;
 }
 
@@ -24,17 +24,18 @@ const View = ({style, shadow, children, ...props}: IViewProps) => {
 
 const lClasses = StyleSheet.create({
   main: {
+    padding: Sizing.x10,
+    backgroundColor: Colors.neutral.white,
+    borderRadius: Outlines.borderRadius.small,
     ...Outlines.shadow.base,
   },
 });
 
 const dClasses = StyleSheet.create({
   main: {
-    padding: Sizing.x10,
-    backgroundColor: Colors.neutral.s700,
-    borderRadius: Outlines.borderRadius.small,
-    ...Outlines.shadow.base,
+    ...lClasses.main,
     shadowColor: Colors.neutral.black,
+    backgroundColor: Colors.neutral.s700,
   },
 });
 
