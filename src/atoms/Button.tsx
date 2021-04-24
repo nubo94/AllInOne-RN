@@ -15,9 +15,16 @@ import {Outlines, Colors, Sizing, Typography} from './styles';
 export interface IButtonProps extends TouchableOpacityProps {
   title: string;
   disabled?: boolean;
+  isLoading?: boolean;
 }
 
-const Button = ({disabled, style, title, ...props}: IButtonProps) => {
+const Button = ({
+  style,
+  title,
+  disabled,
+  isLoading,
+  ...props
+}: IButtonProps) => {
   const isDarkMode = useColorScheme() === 'dark';
 
   function _classes() {
@@ -39,7 +46,7 @@ const Button = ({disabled, style, title, ...props}: IButtonProps) => {
       activeOpacity={0.8}
       disabled={disabled}
       {...props}>
-      {disabled ? (
+      {isLoading ? (
         <ActivityIndicator
           size="small"
           color={isDarkMode ? Colors.neutral.s400 : Colors.neutral.black}

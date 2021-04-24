@@ -16,7 +16,7 @@ export interface ITextWithIconButtonProps {
 const TextWithIconButton = ({label, ...props}: ITextWithIconButtonProps) => {
   return (
     <View shadow={true} style={classes.main}>
-      <View>
+      <View style={classes.wrapperText}>
         <Text label={label} />
       </View>
       <View style={classes.wrapperButtons}>
@@ -31,10 +31,12 @@ const TextWithIconButton = ({label, ...props}: ITextWithIconButtonProps) => {
 const classes = StyleSheet.create({
   main: {
     display: 'flex',
-    alignItems: 'center',
     flexDirection: 'row',
     marginBottom: Sizing.x20,
     justifyContent: 'space-between',
+  },
+  wrapperText: {
+    width: '82%',
   },
   wrapperButtons: {
     display: 'flex',

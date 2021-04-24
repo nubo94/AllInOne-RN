@@ -28,6 +28,7 @@ const lClasses = StyleSheet.create({
     backgroundColor: Colors.neutral.white,
     borderRadius: Outlines.borderRadius.small,
     ...Outlines.shadow.base,
+    shadowRadius: 6,
   },
 });
 

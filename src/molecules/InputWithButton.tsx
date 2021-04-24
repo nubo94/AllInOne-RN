@@ -11,7 +11,7 @@ export interface InputWithButtonProps {
 const InputWithButton = ({input, button}: InputWithButtonProps) => {
   return (
     <View style={styles.main}>
-      <Input {...input} style={styles.input} />
+      <Input style={styles.input} {...input} />
       <Button {...button} />
     </View>
   );
