@@ -11,10 +11,16 @@ describe('Render create task component', () => {
   let expectedProps: ICreateTaskProps;
   beforeEach(() => {
     expectedProps = {
-      titleAction: 'create',
-      placeholder: 'hallow word!',
       description:
         'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
+      actions: {
+        input: {
+          placeholder: 'create your task',
+        },
+        button: {
+          title: 'create',
+        },
+      },
     };
   });
 
@@ -23,9 +29,11 @@ describe('Render create task component', () => {
       <CreateTask {...expectedProps} />,
     );
     expect(getByText(expectedProps.description as string)).toBeTruthy();
-    expect(getByText(expectedProps.titleAction as string)).toBeTruthy();
+    expect(
+      getByText(expectedProps.actions.button.title as string),
+    ).toBeTruthy();
     await waitFor(() =>
-      getByPlaceholderText(expectedProps.placeholder as string),
+      getByPlaceholderText(expectedProps.actions.input.placeholder as string),
     );
   });
 });

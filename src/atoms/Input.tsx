@@ -9,6 +9,7 @@ export interface InputProps extends TextInputProps {}
 
 const Input = ({style, ...props}: InputProps) => {
   const isDarkMode = useColorScheme() === 'dark';
+
   return (
     <TI
       style={[isDarkMode ? dClasses.main : lClasses.main, style]}

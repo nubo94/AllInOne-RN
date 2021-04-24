@@ -1,33 +1,21 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {Text, View} from '../atoms';
-import {InputWithButton} from '../molecules';
+import {InputWithButton, InputWithButtonProps} from '../molecules';
 import {Sizing, Typography} from '../atoms/styles';
 
 export interface ICreateTaskProps {
   description: string;
-  placeholder: string;
-  titleAction: string;
+  actions: InputWithButtonProps;
 }
 
-const CreateTask = ({
-  titleAction,
-  description,
-  placeholder,
-}: ICreateTaskProps) => {
+const CreateTask = ({description, actions}: ICreateTaskProps) => {
   return (
     <View style={classes.main}>
       <View style={classes.wrapperText}>
         <Text label={description} style={classes.text} />
       </View>
-      <InputWithButton
-        input={{placeholder}}
-        button={{
-          disabled: false,
-          title: titleAction,
-          onPress: () => null,
-        }}
-      />
+      <InputWithButton {...actions} />
     </View>
   );
 };

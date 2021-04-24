@@ -7,10 +7,6 @@ import {render, waitFor} from '@testing-library/react-native';
 
 import App from '../App';
 
-/* test('renders correctly', () => {
-   renderer.create(<App />);
- }); */
-
 describe('App', () => {
   it('renders app stack', async () => {
     const {getByText} = render(<App />);
