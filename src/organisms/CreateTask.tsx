@@ -34,7 +34,7 @@ const CreateTask = ({
 
 const classes = StyleSheet.create({
   main: {
-    flexGrow: 1,
+    marginBottom: Sizing.x80,
   },
   wrapperText: {
     marginTop: Sizing.x20,

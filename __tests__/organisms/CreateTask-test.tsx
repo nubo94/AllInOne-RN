@@ -11,10 +11,10 @@ describe('Render create task component', () => {
   let expectedProps: ICreateTaskProps;
   beforeEach(() => {
     expectedProps = {
+      titleAction: 'create',
+      placeholder: 'hallow word!',
       description:
         'Lorem Ipsum is simply dummy text of the printing and typesetting industry.',
-      placeholder: 'hallow word!',
-      titleAction: 'create',
     };
   });
 

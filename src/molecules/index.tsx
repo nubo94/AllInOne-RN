@@ -1,4 +1,7 @@
-import InputWithButton, {InputWithButtonProps} from './InputWithButton';
 import Screen from './Screen';
-export {InputWithButton, Screen};
-export type {InputWithButtonProps};
+import InputWithButton, {InputWithButtonProps} from './InputWithButton';
+import TextWithIconButtons, {
+  ITextWithIconButtonProps,
+} from './TextWithIconButtons';
+export {Screen, InputWithButton, TextWithIconButtons};
+export type {InputWithButtonProps, ITextWithIconButtonProps};
