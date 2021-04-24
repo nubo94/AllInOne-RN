@@ -1,2 +1,3 @@
 import {_add, _remove} from './task';
-export {_add, _remove};
+import {_save, _get} from './storage';
+export {_add, _remove, _save, _get};

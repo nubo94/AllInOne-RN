@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 // Custom Components
 import {FlatList} from '../atoms';
@@ -7,13 +7,17 @@ import {TextWithIconButtons} from '../molecules';
 
 // Custom Hook
 import {useLanguage} from '../providers';
-import {_add, _remove} from '../functions';
+import {_add, _get, _remove, _save} from '../functions';
 
 function ToDo() {
   const {lang} = useLanguage();
   const [text, onChangeText] = useState('');
   const [tasks, setTasks] = useState<ITasks[]>([]);
   const [objToUpdate, setObjToUpdate] = useState<ITasks>(null as any);
+
+  useEffect(() => {
+    _fetch();
+  }, []);
 
   function _handleAdd() {
     const objToAdd = {
@@ -24,6 +28,7 @@ function ToDo() {
     const added = _add(tasks, objToAdd);
     onChangeText('');
     setTasks(added as any);
+    _save(added);
   }
 
   function _handleUpdate() {
@@ -32,11 +37,13 @@ function ToDo() {
     onChangeText('');
     setTasks(updated as any);
     setObjToUpdate(null as any);
+    _save(updated);
   }
 
   function _handleRemove(id: string | number) {
     const deleted = _remove(tasks, id);
     setTasks(deleted as any);
+    _save(deleted);
   }
 
   function _handleEdit(obj: ITasks) {
@@ -61,6 +68,15 @@ function ToDo() {
       />
     );
   };
+
+  async function _fetch() {
+    try {
+      const localStorage = await _get();
+      setTasks(localStorage);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
   return (
     <>
