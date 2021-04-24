@@ -11,6 +11,9 @@ export default {
           update: 'update',
         },
       },
+      list: {
+        empty: "There's no element yet",
+      },
     },
   ],
 };

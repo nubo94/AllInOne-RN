@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
 // Custom Components
+import {FlatList} from '../atoms';
 import {CreateTask} from '../organisms';
 import {TextWithIconButtons} from '../molecules';
 
@@ -21,8 +22,8 @@ function ToDo() {
       created_at: new Date().toISOString(),
     };
     const added = _add(tasks, objToAdd);
-    setTasks(added as any);
     onChangeText('');
+    setTasks(added as any);
   }
 
   function _handleUpdate() {
@@ -30,6 +31,7 @@ function ToDo() {
     const updated = _add(deleted, {...objToUpdate, label: text});
     onChangeText('');
     setTasks(updated as any);
+    setObjToUpdate(null as any);
   }
 
   function _handleRemove(id: string | number) {
@@ -41,6 +43,24 @@ function ToDo() {
     setObjToUpdate(obj);
     onChangeText(obj.label);
   }
+
+  const renderTasks = ({item}: any) => {
+    return (
+      <TextWithIconButtons
+        label={item.label}
+        update={{
+          iconName: 'edit-2',
+          colorIconType: 'normal',
+          onPress: () => _handleEdit(item),
+        }}
+        delete={{
+          iconName: 'trash',
+          colorIconType: 'danger',
+          onPress: () => _handleRemove(item.id),
+        }}
+      />
+    );
+  };
 
   return (
     <>
@@ -61,27 +81,15 @@ function ToDo() {
           },
         }}
       />
-      {tasks
-        .sort(
+      <FlatList
+        keyExtractor={i => i.id}
+        renderItem={renderTasks}
+        empty={lang?.list?.empty}
+        data={tasks.sort(
           (a, b) =>
             (new Date(b.created_at) as any) - (new Date(a.created_at) as any),
-        )
-        .map((i, k) => (
-          <TextWithIconButtons
-            key={k}
-            label={i.label}
-            update={{
-              iconName: 'edit-2',
-              colorIconType: 'normal',
-              onPress: () => _handleEdit(i),
-            }}
-            delete={{
-              iconName: 'trash',
-              colorIconType: 'danger',
-              onPress: () => _handleRemove(i.id),
-            }}
-          />
-        ))}
+        )}
+      />
     </>
   );
 }
