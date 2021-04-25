@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
+import Icon from 'react-native-vector-icons/Feather';
 import {
   useColorScheme,
   TouchableOpacity,
@@ -9,6 +10,7 @@ import {
 
 // Custom Component
 import Text from './Text';
+import View from './View';
 
 // Theme
 import {Outlines, Colors, Sizing, Typography} from './styles';
@@ -16,6 +18,9 @@ export interface IButtonProps extends TouchableOpacityProps {
   title: string;
   disabled?: boolean;
   isLoading?: boolean;
+  iconRight?: {
+    iconName: string;
+  };
 }
 
 const Button = ({
@@ -23,6 +28,7 @@ const Button = ({
   title,
   disabled,
   isLoading,
+  iconRight,
   ...props
 }: IButtonProps) => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -51,6 +57,15 @@ const Button = ({
           size="small"
           color={isDarkMode ? Colors.neutral.s400 : Colors.neutral.black}
         />
+      ) : iconRight ? (
+        <View style={dClasses.wrapperIconWithText}>
+          <Text label={title} style={lClasses.text} />
+          <Icon
+            size={20}
+            name={iconRight.iconName}
+            color={Colors.neutral.white}
+          />
+        </View>
       ) : (
         <Text label={title} style={lClasses.text} />
       )}
@@ -88,6 +103,13 @@ const dClasses = StyleSheet.create({
     borderColor: Colors.neutral.s500,
     shadowColor: Colors.neutral.black,
     backgroundColor: Colors.neutral.s900,
+  },
+  wrapperIconWithText: {
+    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
 });
 
