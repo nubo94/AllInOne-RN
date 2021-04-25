@@ -10,6 +10,6 @@ import App from '../App';
 describe('App', () => {
   it('renders app stack', async () => {
     const {getByText} = render(<App />);
-    await waitFor(() => getByText('Todo App'));
+    await waitFor(() => getByText('All In One'));
   });
 });

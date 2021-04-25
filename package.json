@@ -50,7 +50,8 @@
       "@testing-library/jest-native/extend-expect"
     ],
     "setupFiles": [
-      "./node_modules/react-native-gesture-handler/jestSetup.js"
+      "./node_modules/react-native-gesture-handler/jestSetup.js",
+      "./jestSetupFile.js"
     ],
     "transformIgnorePatterns": [
       "node_modules/react-navigation"

@@ -22,17 +22,8 @@ export default {
     {
       appName: 'Fizz Buzz',
       description:
-        'Create a task, this task will has persisted in your localstorage 🙂',
-      inputs: {
-        create: 'Create your task',
-        action: {
-          create: 'Create',
-          update: 'update',
-        },
-      },
-      list: {
-        empty: "There's no element yet",
-      },
+        'Increase the number and the number divisible by 3 is replaced by the word "Fizz" and divisible by 5 will be replaced by "Buzz"',
+      action: 'Increase',
     },
   ],
 };
