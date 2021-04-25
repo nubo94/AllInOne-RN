@@ -1,3 +1,4 @@
 import {_add, _remove} from './task';
 import {_save, _get} from './storage';
-export {_add, _remove, _save, _get};
+import _fizzBuzz from './fizzBuzz';
+export {_add, _save, _get, _remove, _fizzBuzz};

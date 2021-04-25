@@ -7,17 +7,18 @@ import {TextWithIconButtons} from '../molecules';
 
 // Custom Hook
 import {useLanguage} from '../providers';
-import {_add, _get, _remove, _save} from '../functions';
+import {_add, _remove, _save} from '../functions';
+import {withFetchFromLocalStorage} from '../HOC';
 
-function ToDo() {
+function ToDo({initialData}: any) {
   const {lang} = useLanguage();
   const [text, onChangeText] = useState('');
   const [tasks, setTasks] = useState<ITasks[]>([]);
   const [objToUpdate, setObjToUpdate] = useState<ITasks>(null as any);
 
   useEffect(() => {
-    _fetch();
-  }, []);
+    setTasks(initialData);
+  }, [initialData]);
 
   function _handleAdd() {
     const objToAdd = {
@@ -28,7 +29,7 @@ function ToDo() {
     const added = _add(tasks, objToAdd);
     onChangeText('');
     setTasks(added as any);
-    _save(added);
+    _save('ToDo', added);
   }
 
   function _handleUpdate() {
@@ -37,13 +38,13 @@ function ToDo() {
     onChangeText('');
     setTasks(updated as any);
     setObjToUpdate(null as any);
-    _save(updated);
+    _save('ToDo', updated);
   }
 
   function _handleRemove(id: string | number) {
     const deleted = _remove(tasks, id);
     setTasks(deleted as any);
-    _save(deleted);
+    _save('ToDo', deleted);
   }
 
   function _handleEdit(obj: ITasks) {
@@ -69,15 +70,6 @@ function ToDo() {
     );
   };
 
-  async function _fetch() {
-    try {
-      const localStorage = await _get();
-      setTasks(localStorage);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
   return (
     <>
       <CreateTask
@@ -101,10 +93,12 @@ function ToDo() {
         keyExtractor={i => i.id}
         renderItem={renderTasks}
         empty={lang?.list?.empty}
-        data={tasks.sort(
-          (a, b) =>
-            (new Date(b.created_at) as any) - (new Date(a.created_at) as any),
-        )}
+        data={
+          tasks?.sort(
+            (a, b) =>
+              (new Date(b.created_at) as any) - (new Date(a.created_at) as any),
+          ) || []
+        }
       />
     </>
   );
@@ -116,4 +110,4 @@ interface ITasks {
   id: number | string;
 }
 
-export default ToDo;
+export default withFetchFromLocalStorage(ToDo, 'ToDo');

@@ -1,29 +1,26 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-// CRUD
-
 /**
  * save array of task in local storage
- * @param {arr} array the params need to be an array
+ * @param {string} id identifier in the localStorage
+ * @param {arg} any the data to save in localStorage
  */
 
-export const _save = async (arr: Object[]) => {
+export const _save = async (id?: string, arg?: any) => {
   try {
-    if (!Array.isArray(arr)) {
-      throw new Error('Wrong param');
-    }
-    await AsyncStorage.setItem('@tasks', JSON.stringify(arr));
+    await AsyncStorage.setItem(`@${id}`, JSON.stringify(arg));
   } catch (e) {
     throw new Error(e);
   }
 };
 
 /**
- * @return array
+ * @param {string} id identifier in the localStorage
+ * @return value
  */
-export const _get = async () => {
+export const _get = async (id: string) => {
   try {
-    const jsonValue = await AsyncStorage.getItem('@tasks');
+    const jsonValue = await AsyncStorage.getItem(`@${id}`);
     const parsed = jsonValue !== null ? JSON.parse(jsonValue) : [];
     return parsed;
   } catch (e) {
