@@ -4,7 +4,7 @@ import language from '../translations';
 export const LanguageContext = createContext<IContextProps>({lang: null});
 export const LanguageProvider = ({children}: ILanguageProps) => {
   return (
-    <LanguageContext.Provider value={{lang: language.en[0]}}>
+    <LanguageContext.Provider value={{lang: language.en}}>
       {children}
     </LanguageContext.Provider>
   );

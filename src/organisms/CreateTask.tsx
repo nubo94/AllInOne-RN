@@ -12,7 +12,7 @@ export interface ICreateTaskProps {
 const CreateTask = ({description, actions}: ICreateTaskProps) => {
   return (
     <View style={classes.main}>
-      <View style={classes.wrapperText}>
+      <View>
         <Text label={description} style={classes.text} />
       </View>
       <InputWithButton {...actions} />
@@ -24,13 +24,9 @@ const classes = StyleSheet.create({
   main: {
     marginBottom: Sizing.x80,
   },
-  wrapperText: {
-    marginTop: Sizing.x20,
-    paddingBottom: Sizing.x20,
-  },
   text: {
-    fontSize: Typography.fontSize.x20.fontSize,
-    fontWeight: Typography.fontWeight.bold.fontWeight,
+    marginBottom: Sizing.x70,
+    fontSize: Typography.fontSize.x50.fontSize,
   },
 });
 

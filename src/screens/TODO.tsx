@@ -2,14 +2,14 @@ import React from 'react';
 
 // Custom Components
 import {Screen} from '../molecules';
-import Navigation from '../templates/Navigation';
+import ToDo from '../templates/ToDo';
 
-function HomeScreen() {
+function TODOScreen() {
   return (
     <Screen>
-      <Navigation />
+      <ToDo />
     </Screen>
   );
 }
 
-export default HomeScreen;
+export default TODOScreen;

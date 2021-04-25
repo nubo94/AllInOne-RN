@@ -13,6 +13,7 @@ import {useLanguage} from '../providers';
 
 // Screens
 import HomeScreen from './Home';
+import TODO from './TODO';
 import {Colors} from '../atoms/styles';
 
 function RootScreen() {
@@ -22,8 +23,25 @@ function RootScreen() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen
-          name={lang?.appNAme}
+          name={lang[0].appName}
           component={HomeScreen}
+          options={{
+            headerTintColor: isDarkMode
+              ? Colors.neutral.white
+              : Colors.neutral.s800,
+            headerStyle: {
+              elevation: 0, // android
+              shadowOpacity: 0, // ios
+              borderBottomWidth: 0, // remove the bottom divider
+              backgroundColor: isDarkMode
+                ? Colors.neutral.s800
+                : Colors.neutral.s100,
+            },
+          }}
+        />
+        <Stack.Screen
+          component={TODO}
+          name={lang[1].appName}
           options={{
             headerTintColor: isDarkMode
               ? Colors.neutral.white

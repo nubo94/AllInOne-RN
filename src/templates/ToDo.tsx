@@ -81,19 +81,19 @@ function ToDo() {
   return (
     <>
       <CreateTask
-        description={lang?.description}
+        description={lang[1].description}
         actions={{
           button: {
             disabled: !text,
             title: objToUpdate
-              ? lang?.inputs?.action?.update
-              : lang?.inputs?.action?.create,
+              ? lang[1].inputs?.action?.update
+              : lang[1].inputs?.action?.create,
             onPress: () => (objToUpdate ? _handleUpdate() : _handleAdd()),
           },
           input: {
             value: text,
             onChangeText,
-            placeholder: lang?.inputs?.create,
+            placeholder: lang[1].inputs?.create,
           },
         }}
       />
