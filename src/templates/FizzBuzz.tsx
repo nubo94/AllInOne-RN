@@ -12,10 +12,11 @@ import {withFetchFromLocalStorage} from '../HOC';
 
 function FizzBuzz({initialData}: any) {
   const {lang} = useLanguage();
-  const [num, setNum] = useState(1);
+  const [num, setNum] = useState<number>(1);
 
   useEffect(() => {
-    setNum(initialData);
+    // eslint-disable-next-line radix
+    setNum(parseInt(initialData) || 1);
   }, [initialData]);
 
   return (
