@@ -15,6 +15,11 @@ export default {
           update: 'update',
         },
       },
+      actions: {
+        all: 'all',
+        active: 'active',
+        completed: 'completed',
+      },
       list: {
         empty: "There's no element yet",
       },
