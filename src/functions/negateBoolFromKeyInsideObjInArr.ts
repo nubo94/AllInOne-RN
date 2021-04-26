@@ -3,7 +3,7 @@
  * @param {array} arr arrays of objects
  * @param {string} identifierKey key to negate (need to be a boolean value)
  * @param {string} id object to update
- * @returns arr mapped
+ * @returns arr mapped | string - error
  */
 
 import _verifyIfIsAObjectOfArrays from './verifyIfIsAObjectOfArrays';

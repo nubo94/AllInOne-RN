@@ -26,5 +26,11 @@ export default {
         'Increase the number and the number divisible by 3 is replaced by the word "Fizz" and divisible by 5 will be replaced by "Buzz"',
       action: 'Increase',
     },
+    {
+      appName: 'Book Finder',
+      description:
+        'an application that will allow users to search for books by entering a query (Title, Author, etc)',
+      action: 'Increase',
+    },
   ],
 };
