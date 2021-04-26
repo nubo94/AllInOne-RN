@@ -1,5 +1,5 @@
 import Text from './Text';
-import View from './View';
+import View, {IViewProps} from './View';
 import FlatList from './FlatList';
 import Input, {InputProps} from './Input';
 import Button, {IButtonProps} from './Button';
@@ -16,4 +16,4 @@ export {
   IconButton,
   SafeAreaView,
 };
-export type {IButtonProps, InputProps, IconButtonProps};
+export type {IViewProps, IButtonProps, InputProps, IconButtonProps};

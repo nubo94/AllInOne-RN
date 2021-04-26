@@ -22,7 +22,7 @@ const CreateTask = ({description, actions}: ICreateTaskProps) => {
 
 const classes = StyleSheet.create({
   main: {
-    marginBottom: Sizing.x80,
+    marginBottom: Sizing.x50,
   },
   text: {
     marginBottom: Sizing.x70,

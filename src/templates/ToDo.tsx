@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
+import {StyleSheet} from 'react-native';
 
 // Custom Components
-import {FlatList} from '../atoms';
 import {CreateTask} from '../organisms';
 import {TextWithIconButtons} from '../molecules';
+import {Button, FlatList, View} from '../atoms';
 
 // Custom Hook
 import {useLanguage} from '../providers';
@@ -14,12 +15,18 @@ import {
   _negateBoolFromKeyInsideObjInArr,
 } from '../functions';
 import {withFetchFromLocalStorage} from '../HOC';
+import {Sizing} from '../atoms/styles';
+
+const cacheId = 'TO-DO';
 
 function ToDo({initialData}: any) {
   const {lang} = useLanguage();
   const [text, onChangeText] = useState('');
   const [tasks, setTasks] = useState<ITasks[]>([]);
   const [objToUpdate, setObjToUpdate] = useState<ITasks>(null as any);
+  const [filterBy, setFilterBy] = useState<'all' | 'active' | 'completed'>(
+    'all',
+  );
 
   useEffect(() => {
     setTasks(initialData);
@@ -35,7 +42,7 @@ function ToDo({initialData}: any) {
     const added = _add(tasks, objToAdd);
     onChangeText('');
     setTasks(added as any);
-    _save('ToDo', added);
+    _save(cacheId, added);
   }
 
   function _handleUpdate() {
@@ -44,13 +51,13 @@ function ToDo({initialData}: any) {
     onChangeText('');
     setTasks(updated as any);
     setObjToUpdate(null as any);
-    _save('ToDo', updated);
+    _save(cacheId, updated);
   }
 
   function _handleRemove(id: string | number) {
     const deleted = _remove(tasks, id);
     setTasks(deleted as any);
-    _save('ToDo', deleted);
+    _save(cacheId, deleted);
   }
 
   function _handleEdit(obj: ITasks) {
@@ -61,18 +68,15 @@ function ToDo({initialData}: any) {
   function _handleCheck(id: string | number) {
     const r = _negateBoolFromKeyInsideObjInArr(tasks, 'completed', id);
     setTasks(r as any);
-    _save('ToDo', r);
+    _save(cacheId, r);
   }
 
   const renderTasks = ({item}: any) => {
     return (
       <TextWithIconButtons
         label={item.label}
-        mark={{
-          colorIconType: 'primary',
-          onPress: () => _handleCheck(item.id),
-          iconName: item.completed ? 'check-circle' : 'circle',
-        }}
+        date={item.created_at}
+        view={{touch: {onPress: () => _handleCheck(item.id)}}}
         update={{
           iconName: 'edit-2',
           colorIconType: 'normal',
@@ -82,6 +86,11 @@ function ToDo({initialData}: any) {
           iconName: 'trash',
           colorIconType: 'danger',
           onPress: () => _handleRemove(item.id),
+        }}
+        mark={{
+          colorIconType: 'primary',
+          onPress: () => _handleCheck(item.id),
+          iconName: item.completed ? 'check-circle' : 'circle',
         }}
       />
     );
@@ -106,25 +115,65 @@ function ToDo({initialData}: any) {
           },
         }}
       />
+      <View style={classes.main}>
+        <Button
+          style={classes.button}
+          title={lang[1]?.actions?.all}
+          onPress={() => setFilterBy('all')}
+        />
+        <Button
+          style={classes.button}
+          title={lang[1]?.actions?.active}
+          onPress={() => setFilterBy('active')}
+        />
+        <Button
+          style={classes.button}
+          title={lang[1]?.actions?.completed}
+          onPress={() => setFilterBy('completed')}
+        />
+      </View>
       <FlatList
         keyExtractor={i => i.id}
         renderItem={renderTasks}
-        empty={lang?.list?.empty}
+        empty={lang[1]?.list?.empty}
         data={
-          tasks?.sort(
-            (a, b) =>
-              (new Date(b.created_at) as any) - (new Date(a.created_at) as any),
-          ) || []
+          tasks
+            ?.sort(
+              (a, b) =>
+                (new Date(b.created_at) as any) -
+                (new Date(a.created_at) as any),
+            )
+            .filter(f =>
+              filterBy === 'all'
+                ? f
+                : filterBy === 'completed'
+                ? f.completed
+                : !f.completed,
+            ) || []
         }
       />
     </>
   );
 }
 
+const classes = StyleSheet.create({
+  main: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    marginBottom: Sizing.x30,
+    justifyContent: 'space-between',
+  },
+  button: {
+    width: '32%',
+  },
+});
+
 interface ITasks {
   label: string;
+  completed: boolean;
   created_at: string;
   id: number | string;
 }
 
-export default withFetchFromLocalStorage(ToDo, 'ToDo');
+export default withFetchFromLocalStorage(ToDo, cacheId);
