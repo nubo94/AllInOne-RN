@@ -15,6 +15,7 @@ describe('Render a paper with shadow and buttons with text', () => {
   let expectedProps: ITextWithIconButtonProps;
   beforeEach(() => {
     expectedProps = {
+      date: '',
       label: 'hello word!',
       delete: {
         iconName: 'edit-2',
@@ -26,6 +27,7 @@ describe('Render a paper with shadow and buttons with text', () => {
         onPress: onPressMock,
         colorIconType: 'danger',
       },
+      mark: {onPress: () => null, iconName: 'circle', colorIconType: 'normal'},
     };
   });
 
