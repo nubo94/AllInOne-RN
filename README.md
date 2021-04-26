@@ -4,13 +4,11 @@ Is app where you can use several functionality separates by screens. Each functi
 
 _**NOTA:** The numbers signify an app._
 
-### **1. MAIN SCREEN**
+# 1. MAIN SCREEN
 
 This screen displays a list. This list focuses on being able to access the other screens, where each of those screens will focus on a different functionality.
 
-### **2. TO-DO APP**
-
-# To-Do App
+# 2. To-Do App
 
 **Tier:** 2-Intermediate
 
@@ -35,6 +33,6 @@ The classic To-Do application where a user can write down all the things he want
 
 - [localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage)
 
-### **2. Fizz Buzz APP**
+# 1. Fizz Buzz App
 
 Counting incrementally, any number divisible by 3 is replaced by the word "fizz", and any number divisible by five with the word "buzz".
