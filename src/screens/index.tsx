@@ -11,10 +11,13 @@ const Stack = createStackNavigator();
 // Custom Hook
 import {useLanguage} from '../providers';
 
+// Theme
+import {Colors} from '../atoms/styles';
+
 // Screens
 import HomeScreen from './Home';
-import TODO from './TODO';
-import {Colors} from '../atoms/styles';
+import TODOScreen from './TODO';
+import FizzBuzzScreen from './FizzBuzz';
 
 function RootScreen() {
   const isDarkMode = useColorScheme() === 'dark';
@@ -40,8 +43,25 @@ function RootScreen() {
           }}
         />
         <Stack.Screen
-          component={TODO}
+          component={TODOScreen}
           name={lang[1].appName}
+          options={{
+            headerTintColor: isDarkMode
+              ? Colors.neutral.white
+              : Colors.neutral.s800,
+            headerStyle: {
+              elevation: 0, // android
+              shadowOpacity: 0, // ios
+              borderBottomWidth: 0, // remove the bottom divider
+              backgroundColor: isDarkMode
+                ? Colors.neutral.s800
+                : Colors.neutral.s100,
+            },
+          }}
+        />
+        <Stack.Screen
+          component={FizzBuzzScreen}
+          name={lang[2].appName}
           options={{
             headerTintColor: isDarkMode
               ? Colors.neutral.white

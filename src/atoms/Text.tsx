@@ -3,7 +3,7 @@ import {Text as Tt, TextProps, StyleSheet, useColorScheme} from 'react-native';
 import {Colors} from './styles';
 
 interface ITextProps extends TextProps {
-  label: string;
+  label: string | number;
 }
 
 const Text = ({style, label, ...props}: ITextProps) => {

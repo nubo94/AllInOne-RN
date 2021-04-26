@@ -1,16 +1,25 @@
 import React from 'react';
-import {View as VW, ViewProps, StyleSheet, useColorScheme} from 'react-native';
+import {
+  View as VW,
+  StyleProp,
+  StyleSheet,
+  useColorScheme,
+  TouchableOpacity,
+  TouchableOpacityProps,
+} from 'react-native';
 import {Outlines, Colors, Sizing} from './styles';
 
-interface IViewProps extends ViewProps {
-  children?: JSX.Element[] | JSX.Element;
+export interface IViewProps {
   shadow?: boolean;
+  style?: StyleProp<any>;
+  touch?: TouchableOpacityProps;
+  children?: JSX.Element[] | JSX.Element | null;
 }
 
-const View = ({style, shadow, children, ...props}: IViewProps) => {
+const View = ({touch, style, shadow, children, ...props}: IViewProps) => {
   const isDarkMode = useColorScheme() === 'dark';
 
-  return (
+  return !touch ? (
     <VW
       style={[
         shadow ? (isDarkMode ? dClasses.main : lClasses.main) : null,
@@ -19,6 +28,17 @@ const View = ({style, shadow, children, ...props}: IViewProps) => {
       {...props}>
       {children}
     </VW>
+  ) : (
+    <TouchableOpacity activeOpacity={0.8} {...touch}>
+      <VW
+        style={[
+          shadow ? (isDarkMode ? dClasses.main : lClasses.main) : null,
+          style,
+        ]}
+        {...props}>
+        {children}
+      </VW>
+    </TouchableOpacity>
   );
 };
 

@@ -1,3 +1,14 @@
 import {_add, _remove} from './task';
 import {_save, _get} from './storage';
-export {_add, _remove, _save, _get};
+import _fizzBuzz from './fizzBuzz';
+import _verifyIfIsAObjectOfArrays from './verifyIfIsAObjectOfArrays';
+import _negateBoolFromKeyInsideObjInArr from './negateBoolFromKeyInsideObjInArr';
+export {
+  _add,
+  _get,
+  _save,
+  _remove,
+  _fizzBuzz,
+  _verifyIfIsAObjectOfArrays,
+  _negateBoolFromKeyInsideObjInArr,
+};
