@@ -23,10 +23,8 @@ function ToDo({initialData}: any) {
   const {lang} = useLanguage();
   const [text, onChangeText] = useState('');
   const [tasks, setTasks] = useState<ITasks[]>([]);
+  const [filterBy, setFilterBy] = useState<IFilter>('all');
   const [objToUpdate, setObjToUpdate] = useState<ITasks>(null as any);
-  const [filterBy, setFilterBy] = useState<'all' | 'active' | 'completed'>(
-    'all',
-  );
 
   useEffect(() => {
     setTasks(initialData);
@@ -116,21 +114,14 @@ function ToDo({initialData}: any) {
         }}
       />
       <View style={classes.main}>
-        <Button
-          style={classes.button}
-          title={lang[1]?.actions?.all}
-          onPress={() => setFilterBy('all')}
-        />
-        <Button
-          style={classes.button}
-          title={lang[1]?.actions?.active}
-          onPress={() => setFilterBy('active')}
-        />
-        <Button
-          style={classes.button}
-          title={lang[1]?.actions?.completed}
-          onPress={() => setFilterBy('completed')}
-        />
+        {lang[1]?.actions?.map((i: string, k: number) => (
+          <Button
+            key={k}
+            title={i}
+            style={classes.button}
+            onPress={() => setFilterBy(i as IFilter)}
+          />
+        ))}
       </View>
       <FlatList
         keyExtractor={i => i.id}
@@ -169,6 +160,7 @@ const classes = StyleSheet.create({
   },
 });
 
+type IFilter = 'all' | 'active' | 'completed';
 interface ITasks {
   label: string;
   completed: boolean;
