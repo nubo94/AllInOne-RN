@@ -19,7 +19,7 @@ import {Sizing} from '../atoms/styles';
 
 const cacheId = 'TO-DO';
 
-function ToDo({initialData}: any) {
+function ToDo({initialData, orientation}: any) {
   const {lang} = useLanguage();
   const [text, onChangeText] = useState('');
   const [tasks, setTasks] = useState<ITasks[]>([]);
@@ -93,6 +93,8 @@ function ToDo({initialData}: any) {
       />
     );
   };
+
+  console.log(orientation, '<-||||-|||');
 
   return (
     <>

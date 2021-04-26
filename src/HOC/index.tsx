@@ -1,2 +1,3 @@
+import withOrientation from './withOrientation';
 import withFetchFromLocalStorage from './withFetchFromLocalStorage';
-export {withFetchFromLocalStorage};
+export {withFetchFromLocalStorage, withOrientation};

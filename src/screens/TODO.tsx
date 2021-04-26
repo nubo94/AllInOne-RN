@@ -1,15 +1,18 @@
 import React from 'react';
 
+// HOC
+import {withOrientation} from '../HOC';
+
 // Custom Components
 import {Screen} from '../molecules';
 import ToDo from '../templates/ToDo';
 
-function TODOScreen() {
+function TODOScreen({orientation}: any) {
   return (
     <Screen>
-      <ToDo />
+      <ToDo orientation={orientation} />
     </Screen>
   );
 }
 
-export default TODOScreen;
+export default withOrientation(TODOScreen);
