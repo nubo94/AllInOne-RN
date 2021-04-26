@@ -94,63 +94,102 @@ function ToDo({initialData, orientation}: any) {
     );
   };
 
-  console.log(orientation, '<-||||-|||');
+  function _orientation(className: TClasses) {
+    switch (className) {
+      case 'main':
+        return orientation === 'PORTRAIT'
+          ? PTClasses.main
+          : orientation === 'PORTRAITUPSIDEDOWN'
+          ? LSClasses.main
+          : orientation === 'LANDSCAPE'
+          ? LSClasses.main
+          : PTClasses.main;
+      case 'wrapperBtns':
+        return orientation === 'PORTRAIT'
+          ? PTClasses.wrapperBtns
+          : orientation === 'PORTRAITUPSIDEDOWN'
+          ? LSClasses.wrapperBtns
+          : orientation === 'LANDSCAPE'
+          ? LSClasses.wrapperBtns
+          : PTClasses.wrapperBtns;
+      case 'wrapper':
+        return orientation === 'PORTRAIT'
+          ? PTClasses.wrapper
+          : orientation === 'PORTRAITUPSIDEDOWN'
+          ? LSClasses.wrapper
+          : orientation === 'LANDSCAPE'
+          ? LSClasses.wrapper
+          : PTClasses.wrapper;
+      default:
+        break;
+    }
+  }
 
   return (
-    <>
-      <CreateTask
-        description={lang[1].description}
-        actions={{
-          button: {
-            disabled: !text,
-            title: objToUpdate
-              ? lang[1].inputs?.action?.update
-              : lang[1].inputs?.action?.create,
-            onPress: () => (objToUpdate ? _handleUpdate() : _handleAdd()),
-          },
-          input: {
-            value: text,
-            onChangeText,
-            placeholder: lang[1].inputs?.create,
-          },
-        }}
-      />
-      <View style={classes.main}>
-        {lang[1]?.actions?.map((i: string, k: number) => (
-          <Button
-            key={k}
-            title={i}
-            style={classes.button}
-            onPress={() => setFilterBy(i as IFilter)}
-          />
-        ))}
+    <View style={_orientation('main')}>
+      <View style={_orientation('wrapper')}>
+        <CreateTask
+          description={lang[1].description}
+          actions={{
+            button: {
+              disabled: !text,
+              title: objToUpdate
+                ? lang[1].inputs?.action?.update
+                : lang[1].inputs?.action?.create,
+              onPress: () => (objToUpdate ? _handleUpdate() : _handleAdd()),
+            },
+            input: {
+              value: text,
+              onChangeText,
+              placeholder: lang[1].inputs?.create,
+            },
+          }}
+        />
+        <View style={_orientation('wrapperBtns')}>
+          {lang[1]?.actions?.map((i: string, k: number) => (
+            <Button
+              key={k}
+              title={i}
+              style={LSClasses.button}
+              onPress={() => setFilterBy(i as IFilter)}
+            />
+          ))}
+        </View>
       </View>
-      <FlatList
-        keyExtractor={i => i.id}
-        renderItem={renderTasks}
-        empty={lang[1]?.list?.empty}
-        data={
-          tasks
-            ?.sort(
-              (a, b) =>
-                (new Date(b.created_at) as any) -
-                (new Date(a.created_at) as any),
-            )
-            .filter(f =>
-              filterBy === 'all'
-                ? f
-                : filterBy === 'completed'
-                ? f.completed
-                : !f.completed,
-            ) || []
-        }
-      />
-    </>
+      <View style={_orientation('wrapper')}>
+        <FlatList
+          keyExtractor={i => i.id}
+          renderItem={renderTasks}
+          empty={lang[1]?.list?.empty}
+          data={
+            tasks
+              ?.sort(
+                (a, b) =>
+                  (new Date(b.created_at) as any) -
+                  (new Date(a.created_at) as any),
+              )
+              .filter(f =>
+                filterBy === 'all'
+                  ? f
+                  : filterBy === 'completed'
+                  ? f.completed
+                  : !f.completed,
+              ) || []
+          }
+        />
+      </View>
+    </View>
   );
 }
 
-const classes = StyleSheet.create({
+const PTClasses = StyleSheet.create({
   main: {
+    display: 'flex',
+  },
+  wrapper: {
+    width: '100%',
+  },
+  wrapperBtns: {
     width: '100%',
     display: 'flex',
     flexDirection: 'row',
@@ -161,6 +200,29 @@ const classes = StyleSheet.create({
     width: '32%',
   },
 });
+
+const LSClasses = StyleSheet.create({
+  main: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  wrapper: {
+    width: '48%',
+  },
+  wrapperBtns: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    marginBottom: Sizing.x30,
+    justifyContent: 'space-between',
+  },
+  button: {
+    width: '32%',
+  },
+});
+
+type TClasses = 'main' | 'wrapperBtns' | 'wrapper';
 
 type IFilter = 'all' | 'active' | 'completed';
 interface ITasks {
