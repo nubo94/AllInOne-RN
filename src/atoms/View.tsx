@@ -3,7 +3,7 @@ import {View as VW, ViewProps, StyleSheet, useColorScheme} from 'react-native';
 import {Outlines, Colors, Sizing} from './styles';
 
 interface IViewProps extends ViewProps {
-  children: JSX.Element[] | JSX.Element;
+  children?: JSX.Element[] | JSX.Element;
   shadow?: boolean;
 }
 

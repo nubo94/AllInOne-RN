@@ -7,7 +7,12 @@ import {TextWithIconButtons} from '../molecules';
 
 // Custom Hook
 import {useLanguage} from '../providers';
-import {_add, _remove, _save} from '../functions';
+import {
+  _add,
+  _save,
+  _remove,
+  _negateBoolFromKeyInsideObjInArr,
+} from '../functions';
 import {withFetchFromLocalStorage} from '../HOC';
 
 function ToDo({initialData}: any) {
@@ -23,6 +28,7 @@ function ToDo({initialData}: any) {
   function _handleAdd() {
     const objToAdd = {
       label: text,
+      completed: false,
       id: Math.random(),
       created_at: new Date().toISOString(),
     };
@@ -52,10 +58,21 @@ function ToDo({initialData}: any) {
     onChangeText(obj.label);
   }
 
+  function _handleCheck(id: string | number) {
+    const r = _negateBoolFromKeyInsideObjInArr(tasks, 'completed', id);
+    setTasks(r as any);
+    _save('ToDo', r);
+  }
+
   const renderTasks = ({item}: any) => {
     return (
       <TextWithIconButtons
         label={item.label}
+        mark={{
+          colorIconType: 'primary',
+          onPress: () => _handleCheck(item.id),
+          iconName: item.completed ? 'check-circle' : 'circle',
+        }}
         update={{
           iconName: 'edit-2',
           colorIconType: 'normal',
