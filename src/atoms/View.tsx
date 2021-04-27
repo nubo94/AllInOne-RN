@@ -13,7 +13,7 @@ export interface IViewProps {
   shadow?: boolean;
   style?: StyleProp<any>;
   touch?: TouchableOpacityProps;
-  children?: JSX.Element[] | JSX.Element | null;
+  children?: JSX.Element[] | JSX.Element | any;
 }
 
 const View = ({touch, style, shadow, children, ...props}: IViewProps) => {

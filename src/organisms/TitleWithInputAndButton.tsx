@@ -4,12 +4,15 @@ import {Text, View} from '../atoms';
 import {InputWithButton, InputWithButtonProps} from '../molecules';
 import {Sizing, Typography} from '../atoms/styles';
 
-export interface ICreateTaskProps {
+export interface ITitleWithInputAndButtonProps {
   description: string;
   actions: InputWithButtonProps;
 }
 
-const CreateTask = ({description, actions}: ICreateTaskProps) => {
+const TitleWithInputAndButton = ({
+  actions,
+  description,
+}: ITitleWithInputAndButtonProps) => {
   return (
     <View style={classes.main}>
       <View>
@@ -30,4 +33,4 @@ const classes = StyleSheet.create({
   },
 });
 
-export default CreateTask;
+export default TitleWithInputAndButton;

@@ -5,14 +5,14 @@ import {Sizing} from '../atoms/styles';
 
 export interface InputWithButtonProps {
   input: InputProps;
-  button: IButtonProps;
+  button?: IButtonProps;
 }
 
 const InputWithButton = ({input, button}: InputWithButtonProps) => {
   return (
     <View style={styles.main}>
       <Input style={styles.input} {...input} />
-      <Button {...button} />
+      {button && ((<Button {...button} />) as any)}
     </View>
   );
 };

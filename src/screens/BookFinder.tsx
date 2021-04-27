@@ -2,14 +2,14 @@ import React from 'react';
 
 // Custom Components
 import {Screen} from '../molecules';
-import FizzBuzz from '../templates/FizzBuzz';
+import FinderBook from '../templates/FinderBook';
 
-function BookFinder() {
+function BookFinderScreen() {
   return (
     <Screen>
-      <FizzBuzz />
+      <FinderBook />
     </Screen>
   );
 }
 
-export default BookFinder;
+export default BookFinderScreen;

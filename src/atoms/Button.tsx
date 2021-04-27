@@ -35,7 +35,7 @@ const Button = ({
 
   function _classes() {
     return [
-      disabled
+      disabled || isLoading
         ? isDarkMode
           ? disableDClasses.main
           : disableLClasses.main
@@ -50,7 +50,7 @@ const Button = ({
     <TouchableOpacity
       style={_classes()}
       activeOpacity={0.8}
-      disabled={disabled}
+      disabled={disabled || isLoading}
       {...props}>
       {isLoading ? (
         <ActivityIndicator

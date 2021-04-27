@@ -28,9 +28,16 @@ export default {
     },
     {
       appName: 'Book Finder',
-      description:
-        'an application that will allow users to search for books by entering a query (Title, Author, etc)',
-      action: 'Increase',
+      description: 'Finder your favorite book!',
+      placeholder: 'Filtering by author or name book',
+      found: 'Total found:',
+      notFound: 'Not books found',
+      empty: 'Please, write a name of the book',
+      action: 'search book',
+      bookField: {
+        author: 'Author',
+        published: 'Published',
+      },
     },
   ],
 };
