@@ -17,65 +17,51 @@ import {Colors} from '../atoms/styles';
 // Screens
 import HomeScreen from './Home';
 import TODOScreen from './TODO';
+import BookFinder from './BookFinder';
 import FizzBuzzScreen from './FizzBuzz';
 
 function RootScreen() {
   const isDarkMode = useColorScheme() === 'dark';
   const {lang} = useLanguage();
+
+  function _screens(k: number) {
+    switch (k) {
+      case 0:
+        return HomeScreen;
+      case 1:
+        return TODOScreen;
+      case 2:
+        return FizzBuzzScreen;
+      case 3:
+        return BookFinder;
+      default:
+        break;
+    }
+  }
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen
-          name={lang[0].appName}
-          component={HomeScreen}
-          options={{
-            headerTintColor: isDarkMode
-              ? Colors.neutral.white
-              : Colors.neutral.s800,
-            headerStyle: {
-              elevation: 0, // android
-              shadowOpacity: 0, // ios
-              borderBottomWidth: 0, // remove the bottom divider
-              backgroundColor: isDarkMode
-                ? Colors.neutral.s800
-                : Colors.neutral.s100,
-            },
-          }}
-        />
-        <Stack.Screen
-          component={TODOScreen}
-          name={lang[1].appName}
-          options={{
-            headerTintColor: isDarkMode
-              ? Colors.neutral.white
-              : Colors.neutral.s800,
-            headerStyle: {
-              elevation: 0, // android
-              shadowOpacity: 0, // ios
-              borderBottomWidth: 0, // remove the bottom divider
-              backgroundColor: isDarkMode
-                ? Colors.neutral.s800
-                : Colors.neutral.s100,
-            },
-          }}
-        />
-        <Stack.Screen
-          component={FizzBuzzScreen}
-          name={lang[2].appName}
-          options={{
-            headerTintColor: isDarkMode
-              ? Colors.neutral.white
-              : Colors.neutral.s800,
-            headerStyle: {
-              elevation: 0, // android
-              shadowOpacity: 0, // ios
-              borderBottomWidth: 0, // remove the bottom divider
-              backgroundColor: isDarkMode
-                ? Colors.neutral.s800
-                : Colors.neutral.s100,
-            },
-          }}
-        />
+        {lang.map((i: any, k: number) => (
+          <Stack.Screen
+            key={k}
+            name={i.appName}
+            component={_screens(k) as any}
+            options={{
+              headerTintColor: isDarkMode
+                ? Colors.neutral.white
+                : Colors.neutral.s800,
+              headerStyle: {
+                elevation: 0, // android
+                shadowOpacity: 0, // ios
+                borderBottomWidth: 0, // remove the bottom divider
+                backgroundColor: isDarkMode
+                  ? Colors.neutral.s800
+                  : Colors.neutral.s100,
+              },
+            }}
+          />
+        ))}
       </Stack.Navigator>
     </NavigationContainer>
   );

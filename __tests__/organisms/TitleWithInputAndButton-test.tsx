@@ -5,10 +5,13 @@
 import React from 'react';
 import {render, waitFor} from '@testing-library/react-native';
 
-import {CreateTask, ICreateTaskProps} from '../../src/organisms';
+import {
+  TitleWithInputAndButton,
+  ITitleWithInputAndButtonProps,
+} from '../../src/organisms';
 
 describe('Render create task component', () => {
-  let expectedProps: ICreateTaskProps;
+  let expectedProps: ITitleWithInputAndButtonProps;
   beforeEach(() => {
     expectedProps = {
       description:
@@ -26,11 +29,11 @@ describe('Render create task component', () => {
 
   it('render create task component', async () => {
     const {getByText, getByPlaceholderText} = render(
-      <CreateTask {...expectedProps} />,
+      <TitleWithInputAndButton {...expectedProps} />,
     );
     expect(getByText(expectedProps.description as string)).toBeTruthy();
     expect(
-      getByText(expectedProps.actions.button.title as string),
+      getByText(expectedProps.actions.button?.title as string),
     ).toBeTruthy();
     await waitFor(() =>
       getByPlaceholderText(expectedProps.actions.input.placeholder as string),

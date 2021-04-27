@@ -1,3 +1,4 @@
+import _verifyIfIsAObjectOfArrays from './verifyIfIsAObjectOfArrays';
 // CRUD
 
 /**
@@ -7,7 +8,7 @@
  * @return array
  */
 export const _add = (arr: IArrOfObj[], obj: Object) => {
-  if (_verifyIfIsAObjectOfArrays(arr) || typeof obj !== 'object') {
+  if (!_verifyIfIsAObjectOfArrays(arr)) {
     throw new Error('Params incorrect');
   }
   return [...arr, obj];
@@ -20,18 +21,10 @@ export const _add = (arr: IArrOfObj[], obj: Object) => {
  * @return array
  */
 export const _remove = (arr: IArrOfObj[], id: string | number) => {
-  if (_verifyIfIsAObjectOfArrays(arr) || !id) {
+  if (!_verifyIfIsAObjectOfArrays(arr)) {
     throw new Error('Params incorrect');
   }
   return arr.filter(f => f.id !== id);
-};
-
-const _verifyIfIsAObjectOfArrays = (arr: Object[]) => {
-  return !Array.isArray(arr)
-    ? true
-    : arr?.map(i => typeof i === 'object')?.includes(false)
-    ? true
-    : false;
 };
 
 interface IArrOfObj {

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {StyleSheet} from 'react-native';
 
 // Custom Components
-import {CreateTask} from '../organisms';
+import {TitleWithInputAndButton} from '../organisms';
 import {TextWithIconButtons} from '../molecules';
 import {Button, FlatList, View} from '../atoms';
 
@@ -128,7 +128,7 @@ function ToDo({initialData, orientation}: any) {
   return (
     <View style={_orientation('main')}>
       <View style={_orientation('wrapper')}>
-        <CreateTask
+        <TitleWithInputAndButton
           description={lang[1].description}
           actions={{
             button: {

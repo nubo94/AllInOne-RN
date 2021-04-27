@@ -1,3 +1,6 @@
-import CreateTask, {ICreateTaskProps} from './CreateTask';
-export {CreateTask};
-export type {ICreateTaskProps};
+import TitleWithInputAndButton, {
+  ITitleWithInputAndButtonProps,
+} from './TitleWithInputAndButton';
+import Book, {IBookProps} from './Book';
+export {TitleWithInputAndButton, Book};
+export type {ITitleWithInputAndButtonProps, IBookProps};
