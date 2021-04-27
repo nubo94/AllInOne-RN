@@ -19,7 +19,6 @@ function BookFinder({orientation}: any) {
   const {lang} = useLanguage();
   const [text, onChangeText] = useState('');
   const [books, setBooks] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState(false);
   const [pagination, setPagination] = useState(0);
 
   function _orientation(className: TClasses) {
@@ -54,7 +53,6 @@ function BookFinder({orientation}: any) {
     } catch (error) {
       console.error(error);
     }
-    setIsLoading(false);
   }
 
   function _handlePagination() {
@@ -84,15 +82,10 @@ function BookFinder({orientation}: any) {
             input: {
               value: text,
               onChangeText,
+              keyboardType: 'web-search',
               placeholder: lang[3].placeholder,
-            },
-            button: {
-              isLoading,
-              disabled: !text,
-              title: lang[3].action,
-              onPress: () => {
+              onKeyPress: () => {
                 setPagination(0);
-                setIsLoading(true);
                 _handleFetch(true);
               },
             },
@@ -110,6 +103,7 @@ function BookFinder({orientation}: any) {
         }
         renderItem={({item}) => (
           <Book
+            url={item?.volumeInfo?.infoLink}
             title={item?.volumeInfo?.title || '-'}
             uri={
               item?.volumeInfo?.imageLinks?.smallThumbnail ||
@@ -146,7 +140,7 @@ const PTClasses = StyleSheet.create({
   },
   flatList: {
     marginTop: 10,
-    marginBottom: 250,
+    marginBottom: 180,
   },
 });
 

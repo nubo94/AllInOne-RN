@@ -11,6 +11,7 @@ describe('Render create task component', () => {
   let expectedProps: IBookProps;
   beforeEach(() => {
     expectedProps = {
+      url: '',
       author: 'Carl Sagan',
       published: '2019-02-13',
       title: 'Whimsical Cross-Stitch',

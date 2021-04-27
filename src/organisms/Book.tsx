@@ -1,6 +1,5 @@
-import React from 'react';
-import {Image} from 'react-native';
-import {StyleSheet} from 'react-native';
+import React, {useCallback} from 'react';
+import {StyleSheet, Linking, Alert, Image} from 'react-native';
 import {Text, View} from '../atoms';
 import {Colors, Sizing, Typography, Outlines} from '../atoms/styles';
 import {useLanguage} from '../providers';
@@ -9,6 +8,7 @@ import {useLanguage} from '../providers';
 import {_convertToHttps} from '../functions';
 
 export interface IBookProps {
+  url: string;
   uri: string;
   title: string;
   author: string;
@@ -16,12 +16,29 @@ export interface IBookProps {
   description: string;
 }
 
-const Book = ({uri, title, author, published, description}: IBookProps) => {
+const Book = ({
+  uri,
+  url,
+  title,
+  author,
+  published,
+  description,
+}: IBookProps) => {
   const {lang} = useLanguage();
   let authorLabel = lang?.[3]?.bookField?.author;
   let publishedLabel = lang?.[3]?.bookField?.published;
+
+  const handlePress = useCallback(async () => {
+    const supported = await Linking.canOpenURL(url);
+    if (supported) {
+      await Linking.openURL(url);
+    } else {
+      Alert.alert(`Don't know how to open this URL: ${url}`);
+    }
+  }, [url]);
+
   return (
-    <View shadow style={classes.main}>
+    <View shadow style={classes.main} touch={{onPress: () => handlePress()}}>
       <View style={classes.wrapper}>
         <View style={classes.wrapperImage}>
           <Image style={classes.image} source={{uri: _convertToHttps(uri)}} />
